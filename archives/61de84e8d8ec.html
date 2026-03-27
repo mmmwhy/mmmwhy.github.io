@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>CS224n_Assignment_1 - 一只肥羊</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="一只肥羊"><meta name="msapplication-TileImage" content="https://cdn.lifeiyang.cn/img/8CBd0GaLeF.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="一只肥羊"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="assignment1&amp;#x2F;index.html 第一次作业笔记，对应代码使用Jupyter实现参考链接。"><meta property="og:type" content="blog"><meta property="og:title" content="CS224n_Assignment_1"><meta property="og:url" content="https://iii.run/archives/61de84e8d8ec.html"><meta property="og:site_name" content="一只肥羊"><meta property="og:description" content="assignment1&amp;#x2F;index.html 第一次作业笔记，对应代码使用Jupyter实现参考链接。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cdn.iii.run/picgo/20190425195550.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190425200810.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190428194505.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190502184534.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190430153309.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190430154405.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190430154426.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190502194406.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190502184432.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190502105432.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190502105232.png"><meta property="og:image" content="https://cdn.iii.run/picgo/20190502105342.png"><meta property="article:published_time" content="2019-05-02T10:36:00.000Z"><meta property="article:modified_time" content="2026-03-27T00:36:46.012Z"><meta property="article:author" content="mmmwhy"><meta property="article:tag" content="自然语言处理"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.iii.run/picgo/20190425195550.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://iii.run/archives/61de84e8d8ec.html"},"headline":"CS224n_Assignment_1","image":["https://cdn.iii.run/picgo/20190425195550.png","https://cdn.iii.run/picgo/20190425200810.png","https://cdn.iii.run/picgo/20190428194505.png","https://cdn.iii.run/picgo/20190502184534.png","https://cdn.iii.run/picgo/20190430153309.png","https://cdn.iii.run/picgo/20190430154405.png","https://cdn.iii.run/picgo/20190430154426.png","https://cdn.iii.run/picgo/20190502194406.png","https://cdn.iii.run/picgo/20190502184432.png","https://cdn.iii.run/picgo/20190502105432.png","https://cdn.iii.run/picgo/20190502105232.png","https://cdn.iii.run/picgo/20190502105342.png"],"datePublished":"2019-05-02T10:36:00.000Z","dateModified":"2026-03-27T00:36:46.012Z","author":{"@type":"Person","name":"mmmwhy"},"publisher":{"@type":"Organization","name":"一只肥羊","logo":{"@type":"ImageObject","url":"https://cdn.lifeiyang.cn/blog/180609/gHIIiG8fDI.png"}},"description":"assignment1&#x2F;index.html 第一次作业笔记，对应代码使用Jupyter实现参考链接。"}</script><link rel="canonical" href="https://iii.run/archives/61de84e8d8ec.html"><link rel="icon" href="https://cdn.lifeiyang.cn/img/8CBd0GaLeF.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/dracula.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="一只肥羊" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://cdn.lifeiyang.cn/blog/180609/gHIIiG8fDI.png" alt="一只肥羊" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">时间线</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/archives/b5a3c3fd0b87">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-05-02T10:36:00.000Z" title="5/2/2019, 10:36:00 AM">2019-05-02</time>发表</span><span class="level-item"><time dateTime="2026-03-27T00:36:46.012Z" title="3/27/2026, 12:36:46 AM">2026-03-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/">基础能力</a><span> / </span><a class="link-muted" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/%E7%9B%B8%E5%85%B3%E8%AF%BE%E7%A8%8B/">相关课程</a></span><span class="level-item">21 分钟读完 (大约3208个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">CS224n_Assignment_1</h1><div class="content"><blockquote>
+<p><a target="_blank" rel="noopener" href="https://mmmwhy.gitee.io/cs224n-winter-2017/assignment1/index.html">assignment1/index.html</a> 第一次作业笔记，对应代码使用Jupyter实现<a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/tree/master/assignment1/">参考链接</a>。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h1><h2 id="softmax常数不变性"><a href="#softmax常数不变性" class="headerlink" title="softmax常数不变性"></a>softmax常数不变性</h2><script type="math/tex; mode=display">softmax(x_i) = \frac{e^{x_i} }{\sum_j{e^{x_j} }}</script><script type="math/tex; mode=display">\begin{align} (softmax(x + c))_{i}= \frac{e^{x_{i} + c} }{\sum_{j} e^{x_{j} + c} } = \frac{e^{x_{i} } \times e^{c} }{e^{c} \times \sum_{j} e^{x_{j} }} \nonumber \\ = \frac{e^{x_{i} } \times {e^{c} }}{ {e^{c} } \times \sum_{j} e^{x_{j} }} = (softmax(x))_{i} \nonumber \end{align}</script><p>由于$e^{x+y}=e^x * e^y$，因此多余的$e^c$可以上下消除，于是：<br>这里</p>
+<script type="math/tex; mode=display">softmax(x) = softmax(x + c)</script><p>发现了一个Softmax非常好的性质，即使两个数都很大比如 <code>1000</code>与 <code>1001</code>，其结果与 <code>1</code>和<code>2</code>的结果相同，即其只关注数字之间的差，而不是差占的比例。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>之所以介绍<code>Softmax</code>常数不变性，是因为发现给定的测试用例非常大，直接计算$e^x$次方会比较不可行。</p>
+<p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q1_softmax.ipynb#softmax">Python实现代码</a></p>
+<h1 id="神经网络基础"><a href="#神经网络基础" class="headerlink" title="神经网络基础"></a>神经网络基础</h1><h2 id="梯度检查"><a href="#梯度检查" class="headerlink" title="梯度检查"></a>梯度检查</h2><p><img src="https://cdn.iii.run/picgo/20190425195550.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q2_gradcheck.ipynb">Python实现</a></p>
+<p>这里的<code>random.setstate(rndstate)</code>非常重要，因为后续会用到，主要部分为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x[ix] += h</span><br><span class="line">random.setstate(rndstate)</span><br><span class="line">new_f1 = f(x)[<span class="number">0</span>]</span><br><span class="line">x[ix] -= <span class="number">2</span>*h</span><br><span class="line">random.setstate(rndstate)</span><br><span class="line">new_f2 = f(x)[<span class="number">0</span>]</span><br><span class="line">x[ix] += h</span><br><span class="line">numgrad = (new_f1 - new_f2) / (<span class="number">2</span> * h)</span><br></pre></td></tr></table></figure>
+<h2 id="Sigmoid导数"><a href="#Sigmoid导数" class="headerlink" title="Sigmoid导数"></a>Sigmoid导数</h2><p>定义$\sigma(x)$如下，发现$\sigma(x) + \sigma(-x) = 1$。</p>
+<script type="math/tex; mode=display">
+\sigma(x) = \frac{1}{1 + e^{-x} } = \frac{e^x}{e^x + 1}\\
+\sigma(-x) = \frac{1}{1 + e^{x} } = \frac{e^x+1}{e^x + 1} - \frac{e^x}{e^x + 1}=1-\sigma(x)</script><ul>
+<li>sigmoid实现  $sigmoid(x)-=-\frac{1}{1+e^{(-x)} }$</li>
+</ul>
+<p><img src="https://cdn.iii.run/picgo/20190425200810.png" alt=""></p>
+<p>即: $\sigma’ = \sigma(x) \times (1-\sigma(x))  $</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q2_sigmoid.ipynb#sigmoid_grad">sigmoid_grad实现</a></li>
+</ul>
+<h2 id="交叉熵定义"><a href="#交叉熵定义" class="headerlink" title="交叉熵定义"></a>交叉熵定义</h2><p>当使用交叉熵作为评价指标时，求梯度：</p>
+<ul>
+<li>已知: $\hat{y} = softmax(\theta)$ </li>
+<li>交叉熵： $CE(y,\hat{y}) = - \sum_i{y_i \times log(\hat{y_i})}$</li>
+</ul>
+<p>其中$\boldsymbol{y}$是指示变量，如果该类别和样本的类别相同就是1，否则就是0。因为y一般为one-hot类型。</p>
+<p>而$\hat{y_i}$ 表示每种类型的概率，概率已经过softmax计算。</p>
+<p>对于交叉熵其实有多重定义的方式，但含义相同：</p>
+<p>分别为：</p>
+<h3 id="二分类定义"><a href="#二分类定义" class="headerlink" title="二分类定义"></a>二分类定义</h3><script type="math/tex; mode=display">\begin{align}J = −[y\cdot log(p)+(1−y)\cdot log(1−p)]\end{align} \\</script><ul>
+<li>y——表示样本的label，正类为1，负类为0</li>
+<li>p——表示样本预测为正的概率</li>
+</ul>
+<h3 id="多分类定义"><a href="#多分类定义" class="headerlink" title="多分类定义"></a>多分类定义</h3><script type="math/tex; mode=display">\begin{align}J = -\sum_{c=1}^My_{c}\log(p_{c})\end{align} \\</script><ul>
+<li>y——指示变量（0或1）,如果该类别和样本的类别相同就是1，否则是0；</li>
+<li>p——对于观测样本属于类别c的预测概率。</li>
+</ul>
+<p>但表示的意思都相同，交叉熵用于反映 <strong>分类正确时的概率情况</strong>。</p>
+<h2 id="Softmax导数"><a href="#Softmax导数" class="headerlink" title="Softmax导数"></a>Softmax导数</h2><p>进入解答：</p>
+<ul>
+<li>首先定义$S_i$和分子分母。</li>
+</ul>
+<script type="math/tex; mode=display">S_i = softmax(\theta) = \frac{f_i}{g_i} = \frac{e^{\theta_i} }{\sum^{k}_{k=1}e^{\theta_k} }</script><ul>
+<li><p>$S_i$对$\theta_j$求导：</p>
+<script type="math/tex; mode=display">\begin{align} \frac{\partial{S_i} }{\partial{\theta_j} } &= \frac{f_i'g_i - f_ig_i'}{g_i}\\ &=\frac{(e^{\theta_i})'\sum^{k}_{k=1}e^{\theta_k} - e^{\theta_i}(\sum^{k}_{k=1}e^{\theta_k})'}{(\sum^{k}_{k=1}e^{\theta_k})^2}\end{align}</script></li>
+</ul>
+<p>注意: $S_i$分子是$\theta_i$ ，分母是所有的$\theta$ ，而求偏微的是$\theta_j$ 。</p>
+<ul>
+<li>因此，根据i与j的关系，分为两种情况：</li>
+</ul>
+<ul>
+<li><p>当 $ i == j$ 时：</p>
+<script type="math/tex; mode=display">f_i' = e^{\theta_i},g_i' = e^{\theta_j}</script><script type="math/tex; mode=display">
+\begin{align} \frac{\partial{S_i} }{\partial{\theta_j} } &=\frac{e^{\theta_i}\sum^{k}_{k=1}e^{\theta_k} - e^{\theta_i}e^{\theta_j} }{(\sum^{k}_{k=1}e^{\theta_k})^2} \\ &= \frac{e^{\theta_{i} }}{\sum_{k} e^{\theta_{k} }} \times \frac{\sum_{k} e^{\theta_{k} } – e^{\theta_{j} }}{\sum_{k} e^{\theta_{k} }} \nonumber \\  &= S_{i} \times (1 – S_{i})   \end{align}</script></li>
+</ul>
+<ul>
+<li><p>当 $i \not= j $ 时：</p>
+<script type="math/tex; mode=display">f'_{i} = 0 , g'_{i} = e^{\theta_{j} }</script><script type="math/tex; mode=display">
+\begin{align}  \frac{\partial{S_i} }{\partial{\theta_j} } &= \frac{0 – e^{\theta_{j} } e^{\theta_{i} }}{(\sum_{k} e^{\theta_{k} })^{2} }  \\&= – \frac{e^{\theta_{j} }}{\sum_{k} ^{\theta_{k} }} \times \frac{e^{\theta_{i} }}{\sum_{k} e^{\theta_{k} }} \\ &=-S_j \times S_i\end{align}</script></li>
+</ul>
+<h2 id="交叉熵梯度"><a href="#交叉熵梯度" class="headerlink" title="交叉熵梯度"></a>交叉熵梯度</h2><p>  计算$\frac{\partial{CE} }{\partial{\theta_i} }$ ，根据链式法则，<script type="math/tex">\frac{\partial{CE} }{\partial{\theta_i} } = \frac{\partial{CE} }{\partial{S_i} }\frac{\partial{S_i} }{\partial{\theta_j} }</script></p>
+<ul>
+<li><script type="math/tex; mode=display">\hat{y} = softmax(\theta)</script></li>
+<li><script type="math/tex; mode=display">CE(y,\hat{y}) = - \sum_k{y_k log(\hat{y_k})}</script><script type="math/tex; mode=display">\begin{align}      \frac{\partial CE}{\partial \theta_{i} } &= – \sum_{k} y_{k} \frac{\partial log S_{k} }{\partial \theta_{i} }  \\&= – \sum_{k} y_{k} \frac{1}{S_{k} } \frac{\partial S_{k} }{\partial \theta_{i} } \\ &= – y_{i} (1 – S_{i}) – \sum_{k \ne i} y_{k} \frac{1}{S_{k} } (-S_{k} \times S_{i}) \\ &= – y_{i} (1 – S_{i}) + \sum_{k \ne i} y_{k} S_{i} \\ &= S_{i}(\sum_{k} y_{k}) – y_{i}\end{align}</script></li>
+</ul>
+<p>因为<script type="math/tex">\sum_{k} y_{k}=1</script>，所以<script type="math/tex">\frac{\partial CE}{\partial \theta_{i} }  = S_i - y_i = \hat{y} - y</script></p>
+<h2 id="反向传播计算神经网络梯度"><a href="#反向传播计算神经网络梯度" class="headerlink" title="反向传播计算神经网络梯度"></a>反向传播计算神经网络梯度</h2><p>根据题目给定的定义：</p>
+<p><img src="https://cdn.iii.run/picgo/20190428194505.png" alt=""></p>
+<p>已知损失函数$J = CE$，$h = sigmoid(xW_1+b_1)$, $\hat{y} = softmax(hW_2+b_2)$</p>
+<p>求$\frac{\partial{J} }{\partial{x} }$,$\frac{\partial{J} }{\partial{W_2} }$,$\frac{\partial{J} }{\partial{W1} }$,$\frac{\partial{J} }{\partial{b2} }$,$\frac{\partial{J} }{\partial{b_1} }$</p>
+<p>解答：</p>
+<p>反向传播，定义$z_2 = hW_2 + b_2$， $z_1 = xW_1 + b_1$：</p>
+<p>对于输出层$\hat{y}$来说，$\hat{y}$的输入为 $z_2 = hW_2+b_2$，而输出则为 $\hat{y} = softmax(z_2)$</p>
+<p>上小节计算得到  <script type="math/tex">CE(y,\hat{y}) = - \sum_k{y_k log(\hat{y_k})}</script>  的梯度为 <script type="math/tex">\frac{\partial CE}{\partial \theta_{i} }  = \hat{y} - y</script>,</p>
+<p>可以使用 $z_2$ 替代 $\theta_i$ ，得到</p>
+<ul>
+<li><p>$\delta_1 = \frac{\partial{CE} }{\partial{z_2} } = \hat{y} - y$ </p>
+</li>
+<li><p>$\begin{align} \delta_2 = \frac{\partial{CE} }{\partial{h} } = \frac{\partial{CE} }{\partial{z_2} } \frac{\partial{z_2} }{\partial{h} } = \delta_1W_2^T \end{align}$</p>
+</li>
+<li><p>$\begin{align}\delta_3 = \frac{\partial{CE} }{z_1} = \frac{\partial{CE} }{\partial{h} }\frac{\partial{h} }{\partial{z_1} } = \delta_2 \frac{\partial{h} }{\partial{z_1} }= \delta_2 \circ \sigma’(z_1)\end{align}$ # 推测这里使用点乘的原因是$\delta_2 $经过计算后，应该是一个标量，而不是向量。</p>
+</li>
+<li><p>于是得到：$\frac{\partial{CE} }{\partial{x} }=\delta_3\frac{\partial{z_1} }{\partial{x} } = \delta_3W_1^T $</p>
+</li>
+</ul>
+<p>与计算$\frac{\partial{CE} }{\partial{x} }$相似，计算</p>
+<ul>
+<li>$\frac{\partial{CE} }{\partial{W_2} } = \frac{\partial{CE} }{\partial{z_2} }\frac{\partial{z_2} }{\partial{W_2} }=\delta_1 \cdot h$</li>
+<li>$\frac{\partial{CE} }{\partial{b_2} } = \frac{\partial{CE} }{\partial{z_2} }\frac{\partial{z_2} }{\partial{b_2} }=\delta_1$</li>
+<li>$\frac{\partial{CE} }{\partial{W_1} } = \frac{\partial{CE} }{\partial{z_1} }\frac{\partial{z_1} }{\partial{W_1} }=\delta_3 \cdot x$</li>
+<li>$\frac{\partial{CE} }{\partial{b_1} } = \frac{\partial{CE} }{\partial{z_1} }\frac{\partial{z_1} }{\partial{b_1} }=\delta_3$</li>
+</ul>
+<h2 id="参数数量"><a href="#参数数量" class="headerlink" title="参数数量"></a>参数数量</h2><script type="math/tex; mode=display">
+\begin{align}      n_{W_{1} } &= D_{x} \times H  \\  n_{b_{1} } &= H \\   n_{W_{2} } &= H \times D_{y} \\  n_{b_{2} } &= D_{y} \\    N &= (D_{x} \times H) + H + (H \times D_{y}) + D_{y} \\  &=(D_x+1)\times H+(H+1)\times D_y  \end{align}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q2_neural.ipynb#forword">前向传播实现</a></li>
+<li><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q2_neural.ipynb#backward">反向传播实现</a></li>
+</ul>
+<p>如果仍然对反向传播有疑惑</p>
+<ul>
+<li>可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/charlotte77/p/5629865.html">一文弄懂神经网络中的反向传播法——BackPropagation</a>，画图出来推导一下。</li>
+<li>如何直观地解释 backpropagation 算法？ - Anonymous的回答 - 知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27239198/answer/89853077">https://www.zhihu.com/question/27239198/answer/89853077</a></li>
+</ul>
+<h1 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h1><h2 id="关于词向量的梯度"><a href="#关于词向量的梯度" class="headerlink" title="关于词向量的梯度"></a>关于词向量的梯度</h2><p>在以softmax为假设函数的word2vec中<br><img src="https://cdn.iii.run/picgo/20190502184534.png" alt=""></p>
+<p>​                      </p>
+<p>$\boldsymbol{v}_{c}$是中央单词的词向量</p>
+<p>$\boldsymbol{u}_{w}$ ($w = 1,…,W$) 是第 $w$个词语的词向量。</p>
+<p>假设使用交叉熵作为损失函数， $\boldsymbol{o}$ 为正确单词 (one-hot向量的第 $\boldsymbol{o}$维为1)，请推导损失函数关于$\boldsymbol{v}_c$的梯度。</p>
+<p>提示：</p>
+<script type="math/tex; mode=display">\begin{align}J_{softmax-CE}(\boldsymbol{o}, \boldsymbol{v}_{c}, \boldsymbol{U}) = CE(\boldsymbol{y}, \hat{\boldsymbol{y} })\end{align}</script><p>其中<script type="math/tex">\boldsymbol{U} = [\boldsymbol{u}_{1},\boldsymbol{u}_{1},\dots, \boldsymbol{u}_{W}]</script>是所有词向量构成的矩阵。</p>
+<p>解答：</p>
+<p>首先明确本题给定的模型是<code>skip-gram</code> ，通过给定中心词，来发现周围词的。</p>
+<p>定义$z=U^T \cdot v_c$ ，$U$ 表示所有词向量组成的矩阵，而$v_c$ 也表示的是一个词向量。</p>
+<blockquote>
+<p> hint: 如果两个向量相似性越高，则乘积也就越大。想象一下余弦夹角，应该比较好明白。</p>
+</blockquote>
+<p>因为$U$中所有的词向量，都和$v_c$乘一下获得$z$。</p>
+<blockquote>
+<p> $z$是干嘛用的呢？ $z$内就有W个值，每个值表示和$v_c$ 相似程度，通过这个相似度$softmax$选出最大值，然后与实际对比，进行交叉熵的计算。</p>
+</blockquote>
+<p>已知： $\frac{\partial z}{\partial v_c} = U$  和  $\frac{\partial J}{\partial \boldsymbol{z} } = (\hat{\boldsymbol{y} } -\boldsymbol{y})$ </p>
+<p>因此：$\frac{\partial J}{\partial{v_c} } =\frac{\partial J}{\partial \boldsymbol{z} } \frac{\partial z}{\partial v_c} = U(\hat{\boldsymbol{y} } -\boldsymbol{y})$ </p>
+<hr>
+<p>除了上述表示之外，还有另一种计算方法</p>
+<p><img src="https://cdn.iii.run/picgo/20190430153309.png" alt=""></p>
+<p><img src="https://cdn.iii.run/picgo/20190430154405.png" alt=""></p>
+<p><img src="https://cdn.iii.run/picgo/20190430154426.png" alt=""></p>
+<p><img src="https://cdn.iii.run/picgo/20190502194406.png" alt=""></p>
+<p>于是： <script type="math/tex">\frac{\partial J}{\partial{v_c} }  = -u_i + \sum^{W}_{w=1}\hat{y_w}u_w</script></p>
+<p>仔细观察这两种写法，会发现其实是一回事，都是 观察与期望的差($\hat{y} - y$)。</p>
+<h2 id="推导lookup-table梯度"><a href="#推导lookup-table梯度" class="headerlink" title="推导lookup-table梯度"></a>推导lookup-table梯度</h2><p>与词向量相似</p>
+<p>$\frac{\partial J}{\partial{U} } =\frac{\partial J}{\partial \boldsymbol{z} } \frac{\partial z}{\partial U} = v_c(\hat{\boldsymbol{y} } -\boldsymbol{y})^{T}$</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q3_word2vec.ipynb#softmaxCostAndGradient">softmaxCostAndGradient</a></p>
+<h2 id="负采样时的梯度推导"><a href="#负采样时的梯度推导" class="headerlink" title="负采样时的梯度推导"></a>负采样时的梯度推导</h2><p>假设进行负采样，样本数为$\boldsymbol{K}$，正确答案为$\boldsymbol{o}$，那么有$o \notin {1,…,K}$。负采样损失函数定义如下：</p>
+<p><img src="https://cdn.iii.run/picgo/20190502184432.png" alt=""></p>
+<p>其中：</p>
+<script type="math/tex; mode=display">\begin{align}\sigma(x) = \frac{1}{1 + e^{-x} } \nonumber \\= \frac{e^{x} }{1 + e^{x} } \nonumber \end{align}</script><script type="math/tex; mode=display">\frac{\partial}{\partial x} \sigma(x) = \sigma(x) \times (1 - \sigma(x))</script><p>解答：</p>
+<p>首先说明一下，$J_{neg-sample}$从哪里来的，参考<a target="_blank" rel="noopener" href="https://cs224n.gitee.io/lecture_notes/cs224n-2017-notes1.pdf">note1</a> 第11页，会有一个非常详细的解释。</p>
+<script type="math/tex; mode=display">
+\begin{align}  \frac{\partial J}{\partial v_c}&=\left(\sigma(u_o^Tv_c)-1\right)u_o-\sum_{k=1}^K\left(\sigma(-u_k^Tv_c)-1\right)u_k\\  \frac{\partial J}{\partial u_o}&=\left(\sigma(u_o^Tv_c)-1\right)v_c\\  \frac{\partial J}{\partial u_k}&=-\left(\sigma(-u_k^Tv_c)-1\right)v_c\\  \end{align}</script><h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q3_word2vec.ipynb#negSamplingCostAndGradient">negSamplingCostAndGradient</a></p>
+<h2 id="全部梯度"><a href="#全部梯度" class="headerlink" title="全部梯度"></a>全部梯度</h2><p>推导窗口半径$m$的上下文<script type="math/tex">[word_{c−m} ,...,word_{c−1} ,word_{c} ,word_{c+1} ,...,word_{c+m} ]</script>时，skip-gram 和 CBOW的损失函数<script type="math/tex">F(\boldsymbol{o}, \boldsymbol{v}_{c})</script> (<script type="math/tex">\boldsymbol{o}</script> 是正确答案的词向量）或说<script type="math/tex">J_{softmax-CE}(\boldsymbol{o},\boldsymbol{v}_{c},\dots)</script> 或 <script type="math/tex">J_{neg-sample}(\boldsymbol{o},\boldsymbol{v}_{c},\dots)</script> 关于每个词向量的梯度。</p>
+<p>对于skip-gram来讲，$c$的上下文对应的损失函数是：</p>
+<script type="math/tex; mode=display">\begin{align}    J_{skip-gram}(word_{c-m \dots c+m})=     \sum\limits_{-m \leq j \leq m, j \ne 0} F(\boldsymbol{w}_{c+j}, \boldsymbol{v}_{c})\end{align}</script><p>这里&nbsp;$\boldsymbol{w}_{c+j}$ 是离中心词距离$j$的那个单词。</p>
+<p>而CBOW稍有不同，不使用中心词$\boldsymbol{v}_{c}$而使用上下文词向量的和$\hat{\boldsymbol{v} }$作为输入去预测中心词：</p>
+<script type="math/tex; mode=display">
+\begin{align}    \hat{\boldsymbol{v} } = \sum\limits_{-m \leq j \leq m, j \ne 0} \boldsymbol{v}_{c+j}\end{align}</script><p>然后CBOW的损失函数是：</p>
+<script type="math/tex; mode=display">
+\begin{align}    J_{CBOW}(word_{c-m \dots c+m})= F(\boldsymbol{w}_{c}, \hat{\boldsymbol{v} })\end{align}</script><p>解答：</p>
+<p>根据前面的推导，知道如何得到梯度</p>
+<script type="math/tex; mode=display">
+\begin{align} \frac{\partial J}{\partial \boldsymbol{v_c} } = \boldsymbol{U}^{T} (\hat{\boldsymbol{y} } - \boldsymbol{y}) \nonumber \end{align}</script><p>和</p>
+<script type="math/tex; mode=display">
+\begin{align} \frac{\partial J}{\partial \boldsymbol{U} } = \boldsymbol{v}_{c} (\hat{\boldsymbol{y} } - \boldsymbol{y})^{T} \nonumber \end{align}</script><p>那么所求的梯度可以写作：</p>
+<p>skip-gram</p>
+<script type="math/tex; mode=display">
+\begin{align}    \frac{J_{skip-gram}(word_{c-m \dots c+m})}{\partial \boldsymbol{U} } &=         \sum\limits_{-m \leq j \leq m, j \ne 0} \frac{\partial F(\boldsymbol{w}_{c+j}, \boldsymbol{v}_{c})}{\partial \boldsymbol{U} } \nonumber \\    \frac{J_{skip-gram}(word_{c-m \dots c+m})}{\partial \boldsymbol{v}_{c} } &=     \sum\limits_{-m \leq j \leq m, j \ne 0} \frac{\partial F(\boldsymbol{w}_{c+j}, \boldsymbol{v}_{c})}{\partial \boldsymbol{v}_{c} } \nonumber \\    \frac{J_{skip-gram}(word_{c-m \dots c+m})}{\partial \boldsymbol{v}_{j} } &= 0, \forall j\ne c \nonumber\end{align}</script><p>CBOW</p>
+<script type="math/tex; mode=display">
+\begin{align}    \frac{J_{CBOW}(word_{c-m \dots c+m})}{\partial \boldsymbol{U} }& = \frac{\partial F(\boldsymbol{w}_{c}, \hat{\boldsymbol{v} })}{\partial \boldsymbol{U} } \nonumber \\ \frac{J_{CBOW}(word_{c-m \dots c+m})}{\partial \boldsymbol{v}_{j} } &=     \frac{\partial F(\boldsymbol{w}_{c}, \hat{\boldsymbol{v} })}{\partial \hat{\boldsymbol{v} }}, \forall (j \ne c) \in \{c-m \dots c+m\} \nonumber \\ \frac{J_{CBOW}(word_{c-m \dots c+m})}{\partial \boldsymbol{v}_{j} } &= 0, \forall (j \ne c) \notin \{c-m \dots c+m\} \nonumber\end{align}</script><h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q3_word2vec.ipynb#Skip-gram">Skip-gram</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q3_word2vec.ipynb#CBOW">CBOW</a></p>
+</li>
+</ul>
+<h2 id="补充部分"><a href="#补充部分" class="headerlink" title="补充部分"></a>补充部分</h2><ul>
+<li><p>矩阵的每个行向量的长度归一化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x/np.linalg.norm(x,axis=<span class="number">1</span>,keepdims=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h3 id="在斯坦福情感树库上训练词向量"><a href="#在斯坦福情感树库上训练词向量" class="headerlink" title="在斯坦福情感树库上训练词向量"></a>在斯坦福情感树库上训练词向量</h3><p>直接运行<code>q3_run</code>即可</p>
+<p><img src="https://cdn.iii.run/picgo/20190502105432.png" alt=""></p>
+</li>
+</ul>
+<h1 id="情感分析"><a href="#情感分析" class="headerlink" title="情感分析"></a>情感分析</h1><h2 id="特征向量"><a href="#特征向量" class="headerlink" title="特征向量"></a>特征向量</h2><p>最简单的特征选择方法就是取所有词向量的平均</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sentence_index = [tokens[i] <span class="keyword">for</span> i <span class="keyword">in</span> sentence]</span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> sentence_index:</span><br><span class="line">    sentVector += wordVectors[index, :]</span><br><span class="line"></span><br><span class="line">sentVector /= <span class="built_in">len</span>(sentence)</span><br></pre></td></tr></table></figure>
+<h2 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">values = np.logspace(-<span class="number">4</span>, <span class="number">2</span>, num=<span class="number">100</span>, base=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bestResult = <span class="built_in">max</span>(results, key= <span class="keyword">lambda</span> x: x[<span class="string">&#x27;dev&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="惩罚因子对效果的影响"><a href="#惩罚因子对效果的影响" class="headerlink" title="惩罚因子对效果的影响"></a>惩罚因子对效果的影响</h2><p><img src="https://cdn.iii.run/picgo/20190502105232.png" alt=""></p>
+<h2 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion matrix"></a>confusion matrix</h2><p>关联性排序的一个东西，对角线上的元素越多，预测越准确。</p>
+<p><img src="https://cdn.iii.run/picgo/20190502105342.png" alt=""></p>
+<h1 id="代码参考"><a href="#代码参考" class="headerlink" title="代码参考"></a>代码参考</h1><p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/mmmwhy/CS224n-2017/blob/master/assignment1/q4_sentiment.ipynb">q4_sentiment.ipynb</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>CS224n_Assignment_1</p><p><a href="https://iii.run/archives/61de84e8d8ec.html">https://iii.run/archives/61de84e8d8ec.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>mmmwhy</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-05-02</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2026-03-27</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/archives/9e3fa1c9c7d7.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">使用  &amp; 输出重定向</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/archives/a69663ac5795.html"><span class="level-item">范数计算</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "06eaa9bab6d4e6814b84fb886eef653c",
+            repo: "gitalk-comment",
+            owner: "mmmwhy",
+            clientID: "5b51d4f78fcf553593af",
+            clientSecret: "48fbfa945ec149957caf9cbd24d9ea24b67c0571",
+            admin: ["mmmwhy"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://cdn.lifeiyang.cn/img/8CBd0GaLeF.jpg" alt="mmmwhy"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">mmmwhy</p><p class="is-size-6 is-block">Algorithm Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>beijing</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">148</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">22</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">55</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Softmax"><span class="level-left"><span class="level-item">1</span><span class="level-item">Softmax</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#softmax常数不变性"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">softmax常数不变性</span></span></a></li><li><a class="level is-mobile" href="#实现"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">实现</span></span></a></li></ul></li><li><a class="level is-mobile" href="#神经网络基础"><span class="level-left"><span class="level-item">2</span><span class="level-item">神经网络基础</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#梯度检查"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">梯度检查</span></span></a></li><li><a class="level is-mobile" href="#Sigmoid导数"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Sigmoid导数</span></span></a></li><li><a class="level is-mobile" href="#交叉熵定义"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">交叉熵定义</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#二分类定义"><span class="level-left"><span class="level-item">2.3.1</span><span class="level-item">二分类定义</span></span></a></li><li><a class="level is-mobile" href="#多分类定义"><span class="level-left"><span class="level-item">2.3.2</span><span class="level-item">多分类定义</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Softmax导数"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">Softmax导数</span></span></a></li><li><a class="level is-mobile" href="#交叉熵梯度"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">交叉熵梯度</span></span></a></li><li><a class="level is-mobile" href="#反向传播计算神经网络梯度"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">反向传播计算神经网络梯度</span></span></a></li><li><a class="level is-mobile" href="#参数数量"><span class="level-left"><span class="level-item">2.7</span><span class="level-item">参数数量</span></span></a></li><li><a class="level is-mobile" href="#代码实现"><span class="level-left"><span class="level-item">2.8</span><span class="level-item">代码实现</span></span></a></li></ul></li><li><a class="level is-mobile" href="#word2vec"><span class="level-left"><span class="level-item">3</span><span class="level-item">word2vec</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#关于词向量的梯度"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">关于词向量的梯度</span></span></a></li><li><a class="level is-mobile" href="#推导lookup-table梯度"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">推导lookup-table梯度</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#代码实现-1"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">代码实现</span></span></a></li></ul></li><li><a class="level is-mobile" href="#负采样时的梯度推导"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">负采样时的梯度推导</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#代码实现-2"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">代码实现</span></span></a></li></ul></li><li><a class="level is-mobile" href="#全部梯度"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">全部梯度</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#代码实现-3"><span class="level-left"><span class="level-item">3.4.1</span><span class="level-item">代码实现</span></span></a></li></ul></li><li><a class="level is-mobile" href="#补充部分"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">补充部分</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#在斯坦福情感树库上训练词向量"><span class="level-left"><span class="level-item">3.5.1</span><span class="level-item">在斯坦福情感树库上训练词向量</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#情感分析"><span class="level-left"><span class="level-item">4</span><span class="level-item">情感分析</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#特征向量"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">特征向量</span></span></a></li><li><a class="level is-mobile" href="#正则化"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">正则化</span></span></a></li><li><a class="level is-mobile" href="#调参"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">调参</span></span></a></li><li><a class="level is-mobile" href="#惩罚因子对效果的影响"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">惩罚因子对效果的影响</span></span></a></li><li><a class="level is-mobile" href="#confusion-matrix"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">confusion matrix</span></span></a></li></ul></li><li><a class="level is-mobile" href="#代码参考"><span class="level-left"><span class="level-item">5</span><span class="level-item">代码参考</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E4%BB%A3%E7%A0%81%E8%83%BD%E5%8A%9B/"><span class="level-start"><span class="level-item">代码能力</span></span><span class="level-end"><span class="level-item tag">37</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E4%BB%A3%E7%A0%81%E8%83%BD%E5%8A%9B/leetcode/"><span class="level-start"><span class="level-item">leetcode</span></span><span class="level-end"><span class="level-item tag">25</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%BB%A3%E7%A0%81%E8%83%BD%E5%8A%9B/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E4%BB%BB%E5%8A%A1%E7%B1%BB%E5%9E%8B/"><span class="level-start"><span class="level-item">任务类型</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E4%BB%BB%E5%8A%A1%E7%B1%BB%E5%9E%8B/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/"><span class="level-start"><span class="level-item">对比学习</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E5%86%85%E5%AE%B9%E6%A8%A1%E6%80%81/"><span class="level-start"><span class="level-item">内容模态</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E5%86%85%E5%AE%B9%E6%A8%A1%E6%80%81/%E5%9B%BE%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">图网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%86%85%E5%AE%B9%E6%A8%A1%E6%80%81/%E5%A4%9A%E6%A8%A1%E6%80%81/"><span class="level-start"><span class="level-item">多模态</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%86%85%E5%AE%B9%E6%A8%A1%E6%80%81/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"><span class="level-start"><span class="level-item">自然语言处理</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%86%85%E5%AE%B9%E6%A8%A1%E6%80%81/%E8%A7%86%E8%A7%89/"><span class="level-start"><span class="level-item">视觉</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/"><span class="level-start"><span class="level-item">基础能力</span></span><span class="level-end"><span class="level-item tag">86</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/python/"><span class="level-start"><span class="level-item">python</span></span><span class="level-end"><span class="level-item tag">26</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/python/python-basic/"><span class="level-start"><span class="level-item">python_basic</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/python/python-camp/"><span class="level-start"><span class="level-item">python_camp</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/pytorch/"><span class="level-start"><span class="level-item">pytorch</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/tensorflow/"><span class="level-start"><span class="level-item">tensorflow</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/%E5%9F%BA%E7%A1%80%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">基础工具</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/"><span class="level-start"><span class="level-item">相关技能</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/%E7%9B%B8%E5%85%B3%E8%AF%BE%E7%A8%8B/"><span class="level-start"><span class="level-item">相关课程</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/%E7%AE%97%E6%B3%95%E6%A6%82%E5%BF%B5/"><span class="level-start"><span class="level-item">算法概念</span></span><span class="level-end"><span class="level-item tag">17</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E9%A1%B9%E7%9B%AE/"><span class="level-start"><span class="level-item">算法项目</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p align="center" style="user-select: auto;"><span>From now on, bravely dream and run toward that dream.</span><br><font size="1" style="color: silver; user-select: auto;"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank" style="user-select: auto;">陕ICP备17001447号-3</a>·苏公网安备 32059002001895号</font></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
