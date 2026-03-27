@@ -1,9 +1,24 @@
 /* eslint-disable node/no-unsupported-features/node-builtins */
 (function($, moment, ClipboardJS, config) {
+    function getOriginalImageUrl($img) {
+        const dataSrc = $img.data('src');
+        const src = $img.attr('src');
+
+        if (dataSrc) {
+            return dataSrc;
+        }
+
+        if (!src) {
+            return src;
+        }
+
+        return src.replace(/\?imageMogr2\/.*$/, '');
+    }
+
     $('.article img:not(".not-gallery-item")').each(function() {
         // wrap images with link and add caption if possible
         if ($(this).parent('a').length === 0) {
-            $(this).wrap('<a class="gallery-item" style="display:block;text-align:center;"  href="' + ($(this).data('src') || $(this).attr('src')) + '"></a>');
+            $(this).wrap('<a class="gallery-item" style="display:block;text-align:center;"  href="' + getOriginalImageUrl($(this)) + '"></a>');
             if (this.alt) {
                 $(this).after('<p class="has-text-centered is-size-6 caption">' + this.alt + '</p>');
             }
